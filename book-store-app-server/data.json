@@ -1,0 +1,25 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "discription": "a novel by the American author Harper Lee. It was published in 1960",
+      "price": 60
+    },
+    {
+      "id": 2,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "description": "A romance novel written by Jane Austen that explores first impressions and social class.",
+      "price": 50
+    },
+    {
+      "id": 3,
+      "title": "Mein Kampf",
+      "author": "Adolf Hitler",
+      "discription": "a 1925 autobiographical manifesto by Nazi Party leader Adolf Hitler",
+      "price": 40
+    }
+  ]
+}
