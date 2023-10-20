@@ -12,12 +12,15 @@ const Addform = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      // id: Math.random().toString(),
+      id: Math.random().toString(),
       title: title.current.value,
       price: price.current.value,
       description: description.current.value,
     };
     dispatch(insertBooks(data));
+    title.current.value = null;
+    price.current.value = null;
+    description.current.value = null;
     // console.log("form");//TESTING
     // console.log(title.current.value); //TESTING
   };
