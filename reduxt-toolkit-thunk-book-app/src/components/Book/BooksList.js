@@ -1,6 +1,6 @@
 import React from "react";
 
-const BooksList = ({ isLoading }) => {
+const BooksList = ({ isLoading, books }) => {
   return (
     <div>
       <h2>Books List</h2>
