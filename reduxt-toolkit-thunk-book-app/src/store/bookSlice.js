@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+const getBooks = createAsyncThunk("", async () => {});
 
 const bookSlice = createSlice({
   name: "book",
