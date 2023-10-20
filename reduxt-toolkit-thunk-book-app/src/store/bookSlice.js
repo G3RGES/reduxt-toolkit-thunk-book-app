@@ -15,7 +15,9 @@ const bookSlice = createSlice({
   initialState: {
     books: null,
   },
-  reducers: {},
+  extraReducers: {
+    [getBooks]: (state, action) => {},
+  },
 });
 
 export default bookSlice.reducer;
