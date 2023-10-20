@@ -18,7 +18,7 @@ const PostContainer = () => {
       <hr className="my-5" />
       <div className="row">
         <div className="col">
-          <BooksList isLoading={isLoading} />
+          <BooksList isLoading={isLoading} books={books} />
         </div>
         <div className="col side-line">
           <BookInfo />
