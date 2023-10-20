@@ -17,6 +17,7 @@ export const getBooks = createAsyncThunk(
 export const insertBooks = createAsyncThunk(
   "book/insertBooks",
   async (bookData, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
     try {
       const res = await fetch("http://localhost:3009/books", {
         method: "POST",
@@ -25,7 +26,11 @@ export const insertBooks = createAsyncThunk(
           "Content-type": "application/json; charset=UTF-8",
         },
       });
-    } catch (error) {}
+      const date = await res.json();
+      return date;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
@@ -37,6 +42,7 @@ const bookSlice = createSlice({
     error: null,
   },
   extraReducers: {
+    // GET BOOKS
     [getBooks.pending]: (state, action) => {
       state.isLoading = true;
       state.error = null;
@@ -51,6 +57,19 @@ const bookSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
       // console.log(action);//TESTING
+    },
+    // INSERT/ADD BOOKS
+    [insertBooks.pending]: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [insertBooks.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.books.push(action.payload);
+    },
+    [insertBooks.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
