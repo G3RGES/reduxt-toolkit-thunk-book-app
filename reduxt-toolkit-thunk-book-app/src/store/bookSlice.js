@@ -14,6 +14,21 @@ export const getBooks = createAsyncThunk(
   }
 );
 
+export const insertBooks = createAsyncThunk(
+  "book/insertBooks",
+  async (bookData, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:3009/books", {
+        method: "POST",
+        body: JSON.stringify(bookData),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+    } catch (error) {}
+  }
+);
+
 const bookSlice = createSlice({
   name: "book",
   initialState: {
