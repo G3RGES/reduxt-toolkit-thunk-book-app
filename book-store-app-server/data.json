@@ -20,6 +20,18 @@
       "author": "Adolf Hitler",
       "discription": "a 1925 autobiographical manifesto by Nazi Party leader Adolf Hitler",
       "price": 40
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "price": "80",
+      "description": "a fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series",
+      "id": 4
+    },
+    {
+      "id": "0.0727324603851518",
+      "title": "Harry Potter and the Chamber of Secrets",
+      "price": "80",
+      "description": "Harry Potter and the Chamber of Secrets: 2/7 (Harry Potter 2)"
     }
   ]
 }
