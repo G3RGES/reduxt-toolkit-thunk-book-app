@@ -17,15 +17,19 @@ const bookSlice = createSlice({
   name: "book",
   initialState: {
     books: null,
+    isLoading: false,
   },
   extraReducers: {
     [getBooks.pending]: (state, action) => {
+      state.isLoading = true;
       console.log(action);
     },
     [getBooks.fulfilled]: (state, action) => {
+      state.isLoading = false;
       console.log(action);
     },
     [getBooks.rejected]: (state, action) => {
+      state.isLoading = false;
       console.log(action);
     },
   },
