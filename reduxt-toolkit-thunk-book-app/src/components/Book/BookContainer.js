@@ -7,7 +7,7 @@ import BooksList from "./BooksList";
 import "./book.css";
 
 const PostContainer = () => {
-  const { isLoading } = useSelector((state) => state.books);
+  const { isLoading, books } = useSelector((state) => state.books);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBooks());
