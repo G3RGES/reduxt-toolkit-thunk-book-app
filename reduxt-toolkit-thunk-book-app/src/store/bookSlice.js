@@ -16,7 +16,15 @@ const bookSlice = createSlice({
     books: null,
   },
   extraReducers: {
-    [getBooks]: (state, action) => {},
+    [getBooks.pending]: (state, action) => {
+      console.log(action);
+    },
+    [getBooks.fulfilled]: (state, action) => {
+      console.log(action);
+    },
+    [getBooks.rejected]: (state, action) => {
+      console.log(action);
+    },
   },
 });
 
