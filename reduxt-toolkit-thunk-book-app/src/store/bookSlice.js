@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { logInsert } from "./reportSlice";
 
 export const getBooks = createAsyncThunk(
   "book/getBooks",
@@ -17,7 +18,7 @@ export const getBooks = createAsyncThunk(
 export const insertBooks = createAsyncThunk(
   "book/insertBooks",
   async (bookData, thunkAPI) => {
-    const { rejectWithValue, getState } = thunkAPI;
+    const { rejectWithValue, getState, dispatch } = thunkAPI;
     try {
       bookData.author = getState().auth.name;
       const res = await fetch("http://localhost:3009/books", {
@@ -28,8 +29,10 @@ export const insertBooks = createAsyncThunk(
         },
       });
       const date = await res.json();
+      dispatch(logInsert({ name: "insertBook", status: "success" }));
       return date;
     } catch (error) {
+      dispatch(logInsert({ name: "insertBook", status: "failed" }));
       return rejectWithValue(error.message);
     }
   }
@@ -37,10 +40,10 @@ export const insertBooks = createAsyncThunk(
 
 export const deleteBook = createAsyncThunk(
   "book/deleteBook",
-  async (id, thunkAPI) => {
+  async (item, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await fetch(`http://localhost:3009/books/${id}`, {
+      await fetch(`http://localhost:3009/books/${item.id}`, {
         method: "DELETE",
 
         headers: {
@@ -48,7 +51,7 @@ export const deleteBook = createAsyncThunk(
         },
       });
       // console.log(res);//TESTING
-      return id;
+      return item;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -99,7 +102,7 @@ const bookSlice = createSlice({
     },
     [deleteBook.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.books = state.books.filter((el) => el.id !== action.payload);
+      state.books = state.books.filter((el) => el.id !== action.payload.id);
       // console.log(action);//TESTING
     },
     [deleteBook.rejected]: (state, action) => {
