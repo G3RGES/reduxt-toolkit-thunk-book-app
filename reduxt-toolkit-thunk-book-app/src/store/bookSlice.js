@@ -35,6 +35,26 @@ export const insertBooks = createAsyncThunk(
   }
 );
 
+export const deleteBook = createAsyncThunk(
+  "book/deleteBook",
+  async (id, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await fetch(`http://localhost:3009/books/${id}`, {
+        method: "DELETE",
+
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      console.log(res);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const bookSlice = createSlice({
   name: "book",
   initialState: {
