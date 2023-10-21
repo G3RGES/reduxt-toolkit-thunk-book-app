@@ -92,6 +92,19 @@ const bookSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    //DELETE BOOKS
+    [deleteBook.pending]: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [deleteBook.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.books.push(action.payload);
+    },
+    [deleteBook.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
