@@ -17,7 +17,16 @@ const BooksList = ({ isLoading, books, isLoggedIn, deleteBook, dispatch }) => {
                 type="button"
                 className="btn btn-danger"
                 disabled={!isLoggedIn}
-                onClick={() => dispatch(deleteBook(item.id))}
+                onClick={() =>
+                  dispatch(deleteBook(item))
+                    .unwrap()
+                    .then((data) => {
+                      console.log(data); //TESTING
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    })
+                }
               >
                 Delete
               </button>
