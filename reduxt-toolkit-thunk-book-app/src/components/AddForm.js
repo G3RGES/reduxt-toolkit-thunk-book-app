@@ -15,7 +15,6 @@ const Addform = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      id: Math.random().toString(),
       title: title.current.value,
       price: price.current.value,
       description: description.current.value,
