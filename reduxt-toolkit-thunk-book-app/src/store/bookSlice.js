@@ -58,12 +58,33 @@ export const deleteBook = createAsyncThunk(
   }
 );
 
+export const getBook = createAsyncThunk(
+  "book/getBook",
+  async (item, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      await fetch(`http://localhost:3009/books/${item.id}`, {
+        method: "GET",
+
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      // console.log(res);//TESTING
+      return item;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const bookSlice = createSlice({
   name: "book",
   initialState: {
     books: [],
     isLoading: false,
     error: null,
+    bookInfo: null,
   },
   extraReducers: {
     // GET BOOKS
@@ -106,6 +127,19 @@ const bookSlice = createSlice({
       // console.log(action);//TESTING
     },
     [deleteBook.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    //GET BOOK INFO
+    [getBook.pending]: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [getBook.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.bookInfo = action.payload;
+    },
+    [getBook.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
