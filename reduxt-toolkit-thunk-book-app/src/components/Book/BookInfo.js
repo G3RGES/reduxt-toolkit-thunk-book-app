@@ -5,7 +5,9 @@ const BookInfo = ({ selectedBook }) => {
   return (
     <Fragment>
       <h2>Book Details</h2>
-      {selectedBook ? (
+      {/* //* COULD USE Object.keys or Object.values 
+      //* WHICHEVER OF THEM AS LONG AS THEY HAVE LENGTH MORE THAN 0 THEY WILL WORK */}
+      {Object.keys(selectedBook).length > 0 ? (
         <div>
           <p className="fw-bold">Title: {selectedBook.title}</p>
           <p className="fst-italic">Author: {selectedBook.author}</p>
