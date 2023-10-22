@@ -1,6 +1,13 @@
 import React from "react";
 
-const BooksList = ({ isLoading, books, isLoggedIn, deleteBook, dispatch }) => {
+const BooksList = ({
+  isLoading,
+  books,
+  isLoggedIn,
+  deleteBook,
+  dispatch,
+  getBookId,
+}) => {
   const booksList =
     books.length > 0
       ? books.map((item) => (
@@ -10,7 +17,11 @@ const BooksList = ({ isLoading, books, isLoggedIn, deleteBook, dispatch }) => {
           >
             <div>{item.title}</div>
             <div className="btn-group" role="group">
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => getBookId(item.id)}
+              >
                 Read
               </button>
               <button
@@ -24,7 +35,7 @@ const BooksList = ({ isLoading, books, isLoggedIn, deleteBook, dispatch }) => {
                       console.log(data); //TESTING
                     })
                     .catch((error) => {
-                      console.log(error);
+                      console.log(error); //TESTING
                     })
                 }
               >
